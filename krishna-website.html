@@ -1,0 +1,1971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shree Krishna – Divine World of Vrindavan</title>
+<meta name="description" content="Experience the divine love, wisdom and grace of Lord Krishna. A cinematic spiritual journey through Vrindavan.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Sans+Devanagari:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0a0c1a;
+    --deep-blue: #0d1235;
+    --royal-blue: #1a1f4e;
+    --royal-purple: #2d1b69;
+    --gold: #c9a227;
+    --gold-light: #f0cc6a;
+    --gold-pale: #fdf0c0;
+    --amber: #d4891a;
+    --soft-gold: #e8c855;
+    --cream: #fef9e7;
+    --pink-soft: #f5c2d5;
+    --purple-soft: #c9aeed;
+    --text-light: rgba(255,255,255,0.92);
+    --text-muted: rgba(255,255,255,0.6);
+    --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
+  body {
+    background: var(--navy);
+    color: var(--text-light);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.7;
+    cursor: none;
+    overflow-x: hidden;
+  }
+
+  /* ===== CUSTOM CURSOR ===== */
+  #cursor-dot {
+    position: fixed; width: 8px; height: 8px;
+    background: var(--gold-light); border-radius: 50%;
+    pointer-events: none; z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease;
+    box-shadow: 0 0 12px var(--gold);
+  }
+  #cursor-ring {
+    position: fixed; width: 36px; height: 36px;
+    border: 1.5px solid rgba(201,162,39,0.5); border-radius: 50%;
+    pointer-events: none; z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.18s ease, width 0.3s, height 0.3s, border-color 0.3s;
+  }
+  body:has(a:hover, button:hover) #cursor-ring,
+  .cursor-expand #cursor-ring {
+    width: 56px; height: 56px; border-color: rgba(201,162,39,0.9);
+  }
+
+  /* ===== LOADING SCREEN ===== */
+  #loader {
+    position: fixed; inset: 0; background: var(--navy);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    z-index: 10000; transition: opacity 0.8s ease, visibility 0.8s ease;
+  }
+  #loader.hidden { opacity: 0; visibility: hidden; }
+  .loader-om {
+    font-size: 80px; color: var(--gold);
+    animation: omPulse 2s ease-in-out infinite;
+    text-shadow: 0 0 40px var(--gold), 0 0 80px rgba(201,162,39,0.4);
+    font-family: 'Noto Sans Devanagari', sans-serif;
+  }
+  @keyframes omPulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 1; }
+  }
+  .loader-ring {
+    position: absolute; width: 160px; height: 160px;
+    border-radius: 50%;
+    border: 1px solid transparent;
+    border-top-color: var(--gold);
+    border-right-color: rgba(201,162,39,0.3);
+    animation: spinRing 3s linear infinite;
+  }
+  .loader-ring.r2 {
+    width: 200px; height: 200px;
+    border-top-color: transparent;
+    border-bottom-color: rgba(201,162,39,0.5);
+    animation-duration: 4s; animation-direction: reverse;
+  }
+  @keyframes spinRing { to { transform: rotate(360deg); } }
+  .loader-text {
+    margin-top: 32px; font-family: 'Cinzel', serif;
+    font-size: 16px; color: var(--gold-pale);
+    letter-spacing: 0.3em; opacity: 0;
+    animation: fadeInText 1s ease 1s forwards;
+  }
+  .loader-progress {
+    margin-top: 24px; width: 200px; height: 1px;
+    background: rgba(201,162,39,0.2);
+  }
+  .loader-progress-bar {
+    height: 100%; width: 0; background: var(--gold);
+    animation: loadProgress 2s ease 0.5s forwards;
+    box-shadow: 0 0 8px var(--gold);
+  }
+  @keyframes fadeInText { to { opacity: 1; } }
+  @keyframes loadProgress { to { width: 100%; } }
+
+  /* ===== NAVBAR ===== */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    padding: 0 48px;
+    background: rgba(10,12,26,0.1);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,162,39,0.08);
+    transition: var(--transition);
+  }
+  nav.scrolled {
+    background: rgba(10,12,26,0.85);
+    border-bottom-color: rgba(201,162,39,0.15);
+  }
+  .nav-inner {
+    max-width: 1400px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 72px;
+  }
+  .nav-logo {
+    font-family: 'Cinzel', serif; font-size: 20px;
+    color: var(--gold-light); letter-spacing: 0.1em;
+    text-decoration: none; display: flex; align-items: center; gap: 10px;
+  }
+  .nav-logo span { font-size: 24px; }
+  .nav-links {
+    display: flex; gap: 40px; list-style: none;
+  }
+  .nav-links a {
+    font-family: 'Cinzel', serif; font-size: 13px;
+    letter-spacing: 0.15em; color: rgba(255,255,255,0.75);
+    text-decoration: none; position: relative;
+    transition: color 0.3s;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+    height: 1px; background: var(--gold);
+    transform: scaleX(0); transition: transform 0.3s ease;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .nav-toggle span { width: 24px; height: 1.5px; background: var(--gold); transition: var(--transition); }
+
+  /* ===== PARTICLES CANVAS ===== */
+  #particles-canvas {
+    position: fixed; inset: 0; pointer-events: none; z-index: 1;
+  }
+
+  /* ===== HERO SECTION ===== */
+  #hero {
+    position: relative; height: 100vh; min-height: 700px;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 100% 80% at 50% 70%, #0a1a3a 0%, #0d0b2a 40%, #050814 100%);
+  }
+  /* Sky */
+  .hero-sky {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg,
+      #02040f 0%, #050b24 20%, #0c1545 40%,
+      #0d1a52 55%, #162260 65%,
+      #1a2a70 75%, #1e3080 85%, #232080 100%);
+  }
+  /* Moon */
+  .hero-moon {
+    position: absolute; top: 8%; left: 50%; transform: translateX(-50%);
+    width: 90px; height: 90px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #fffde7, #fef9c3 40%, #fde68a);
+    box-shadow: 0 0 40px rgba(255,245,160,0.5), 0 0 100px rgba(255,245,160,0.2),
+                0 0 200px rgba(255,245,160,0.1);
+    animation: moonFloat 8s ease-in-out infinite;
+  }
+  @keyframes moonFloat {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-8px); }
+  }
+  .moon-halo {
+    position: absolute; top: 6%; left: 50%;
+    transform: translate(-50%, -3%);
+    width: 160px; height: 160px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,245,150,0.15) 0%, transparent 70%);
+    animation: moonFloat 8s ease-in-out infinite;
+  }
+  /* Stars */
+  .stars-layer {
+    position: absolute; inset: 0; overflow: hidden;
+  }
+  /* Yamuna river */
+  .yamuna {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 25%;
+    background: linear-gradient(180deg, transparent 0%, rgba(15,30,80,0.4) 30%,
+      rgba(20,40,100,0.7) 60%, rgba(10,20,60,0.9) 100%);
+    overflow: hidden;
+  }
+  .yamuna::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, transparent, rgba(255,245,150,0.6), rgba(201,162,39,0.4), transparent);
+    animation: riverShimmer 4s ease-in-out infinite;
+  }
+  @keyframes riverShimmer {
+    0%, 100% { opacity: 0.4; transform: scaleX(0.8); }
+    50% { opacity: 1; transform: scaleX(1); }
+  }
+  /* Kadamba trees silhouette */
+  .trees-left, .trees-right {
+    position: absolute; bottom: 22%; width: 200px;
+    display: flex; align-items: flex-end;
+  }
+  .trees-left { left: 0; }
+  .trees-right { right: 0; transform: scaleX(-1); }
+  .tree-silhouette {
+    width: 100%; height: 280px;
+    background: #020510;
+    clip-path: polygon(30% 100%, 0% 60%, 15% 65%, 5% 40%, 20% 48%, 10% 25%, 25% 35%, 20% 15%, 35% 28%, 30% 8%, 45% 22%, 40% 0%, 55% 18%, 50% 4%, 65% 20%, 60% 8%, 75% 25%, 70% 10%, 82% 30%, 78% 18%, 90% 40%, 85% 30%, 100% 55%, 80% 50%, 100% 100%);
+    opacity: 0.9;
+  }
+  /* Krishna SVG illustration */
+  .krishna-figure {
+    position: absolute; bottom: 22%; left: 50%; transform: translateX(-50%);
+    width: 260px; height: 380px; z-index: 5;
+    filter: drop-shadow(0 0 30px rgba(201,162,39,0.4));
+    animation: krishnaFloat 6s ease-in-out infinite;
+  }
+  @keyframes krishnaFloat {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-12px); }
+  }
+  .krishna-aura {
+    position: absolute; bottom: 20%; left: 50%; transform: translateX(-50%);
+    width: 320px; height: 320px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,162,39,0.18) 0%,
+      rgba(201,162,39,0.08) 40%, transparent 70%);
+    animation: auraPulse 4s ease-in-out infinite;
+    z-index: 4;
+  }
+  @keyframes auraPulse {
+    0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.7; }
+    50% { transform: translateX(-50%) scale(1.1); opacity: 1; }
+  }
+  /* Hero content */
+  .hero-content {
+    position: relative; z-index: 10; text-align: center;
+    padding: 0 24px; margin-top: -80px;
+  }
+  .hero-hindi {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: clamp(48px, 8vw, 96px); font-weight: 300;
+    color: var(--gold-light);
+    text-shadow: 0 0 40px rgba(201,162,39,0.7), 0 0 80px rgba(201,162,39,0.3);
+    margin-bottom: 16px;
+    animation: fadeInUp 1.2s ease 2.5s both;
+  }
+  .hero-subtitle {
+    font-family: 'Crimson Pro', serif; font-size: clamp(16px, 2.5vw, 24px);
+    font-style: italic; color: rgba(255,255,255,0.8);
+    max-width: 600px; margin: 0 auto 40px;
+    animation: fadeInUp 1.2s ease 2.8s both;
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-buttons {
+    display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;
+    animation: fadeInUp 1.2s ease 3.1s both;
+  }
+  .btn {
+    font-family: 'Cinzel', serif; font-size: 14px;
+    letter-spacing: 0.2em; padding: 14px 36px;
+    border-radius: 2px; cursor: pointer; text-decoration: none;
+    transition: var(--transition); display: inline-block;
+  }
+  .btn-primary {
+    background: var(--gold); color: #0a0c1a; border: 1px solid var(--gold);
+    box-shadow: 0 0 20px rgba(201,162,39,0.4);
+  }
+  .btn-primary:hover {
+    background: var(--gold-light); border-color: var(--gold-light);
+    box-shadow: 0 0 40px rgba(240,204,106,0.6); transform: translateY(-2px);
+  }
+  .btn-secondary {
+    background: transparent; color: var(--gold-light);
+    border: 1px solid rgba(201,162,39,0.5);
+  }
+  .btn-secondary:hover {
+    background: rgba(201,162,39,0.1); border-color: var(--gold);
+    box-shadow: 0 0 20px rgba(201,162,39,0.2); transform: translateY(-2px);
+  }
+  /* Scroll indicator */
+  .scroll-indicator {
+    position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    animation: fadeInUp 1s ease 3.5s both; z-index: 10;
+  }
+  .scroll-indicator span {
+    font-family: 'Cinzel', serif; font-size: 11px;
+    letter-spacing: 0.3em; color: rgba(201,162,39,0.6);
+  }
+  .scroll-line {
+    width: 1px; height: 50px;
+    background: linear-gradient(to bottom, rgba(201,162,39,0.6), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0% { transform: scaleY(0); transform-origin: top; opacity: 1; }
+    100% { transform: scaleY(1); transform-origin: top; opacity: 0; }
+  }
+
+  /* ===== SECTION BASE ===== */
+  section {
+    position: relative; z-index: 2;
+  }
+  .section-inner {
+    max-width: 1200px; margin: 0 auto; padding: 0 40px;
+  }
+  .section-eyebrow {
+    font-family: 'Cinzel', serif; font-size: 12px;
+    letter-spacing: 0.4em; color: var(--gold); margin-bottom: 16px;
+    display: block;
+  }
+  .section-title {
+    font-family: 'Cinzel', serif; font-size: clamp(28px, 4vw, 52px);
+    font-weight: 400; color: var(--cream); line-height: 1.2;
+    margin-bottom: 20px;
+  }
+  .section-title .gold { color: var(--gold-light); }
+  .section-desc {
+    font-size: 20px; font-weight: 300; color: rgba(255,255,255,0.7);
+    max-width: 640px; line-height: 1.8;
+  }
+  .divider {
+    width: 80px; height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    margin: 32px auto;
+  }
+
+  /* ===== REVEAL ANIMATION ===== */
+  .reveal {
+    opacity: 0; transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1; transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ===== DIVINE PRESENCE SECTION ===== */
+  #divine-presence {
+    padding: 120px 0;
+    background: linear-gradient(180deg, var(--navy) 0%, #0e1035 50%, var(--navy) 100%);
+  }
+  .presence-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    align-items: center;
+  }
+  .presence-left { text-align: left; }
+  .presence-image-wrap {
+    position: relative; display: flex; align-items: center; justify-content: center;
+  }
+  .presence-aura-wrap {
+    position: relative; width: 340px; height: 340px;
+    border-radius: 50%; cursor: crosshair;
+  }
+  .presence-aura {
+    position: absolute; inset: -20px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,162,39,0.15) 0%, transparent 70%);
+    animation: auraPulse 5s ease-in-out infinite;
+    transition: transform 0.3s ease;
+  }
+  .presence-circle {
+    width: 340px; height: 340px; border-radius: 50%;
+    background: radial-gradient(circle at 40% 35%,
+      rgba(201,162,39,0.12) 0%, rgba(45,27,105,0.3) 50%, rgba(10,12,26,0.8) 100%);
+    border: 1px solid rgba(201,162,39,0.2);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; position: relative;
+  }
+  .presence-krishna-art {
+    width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+  }
+  .presence-particles {
+    position: absolute; inset: 0; border-radius: 50%; overflow: hidden;
+    pointer-events: none;
+  }
+  /* Info cards */
+  .info-cards {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 48px;
+  }
+  .info-card {
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(201,162,39,0.15);
+    border-radius: 4px; padding: 24px; transition: var(--transition);
+    position: relative; overflow: hidden;
+  }
+  .info-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(201,162,39,0.05), transparent);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .info-card:hover {
+    border-color: rgba(201,162,39,0.5);
+    box-shadow: 0 0 30px rgba(201,162,39,0.1);
+    transform: translateY(-4px);
+  }
+  .info-card:hover::before { opacity: 1; }
+  .info-card-icon { font-size: 28px; margin-bottom: 12px; }
+  .info-card-title {
+    font-family: 'Cinzel', serif; font-size: 15px; color: var(--gold-light);
+    margin-bottom: 8px; letter-spacing: 0.05em;
+  }
+  .info-card-desc { font-size: 15px; color: rgba(255,255,255,0.65); line-height: 1.6; }
+
+  /* ===== TIMELINE SECTION ===== */
+  #journey {
+    padding: 120px 0;
+    background: linear-gradient(180deg, var(--navy), #080b20 50%, var(--navy));
+  }
+  .timeline-header { text-align: center; margin-bottom: 80px; }
+  .timeline {
+    position: relative; padding-left: 50%;
+  }
+  .timeline::before {
+    content: ''; position: absolute; left: 50%; top: 0; bottom: 0;
+    width: 1px; background: linear-gradient(to bottom, transparent, rgba(201,162,39,0.4) 10%, rgba(201,162,39,0.4) 90%, transparent);
+    transform: translateX(-50%);
+  }
+  .timeline-item {
+    position: relative; margin-bottom: 60px;
+    display: grid; grid-template-columns: 1fr 60px 1fr; align-items: start;
+  }
+  .timeline-item:nth-child(odd) .tl-content { grid-column: 1; text-align: right; padding-right: 50px; }
+  .timeline-item:nth-child(odd) .tl-empty { grid-column: 3; }
+  .timeline-item:nth-child(even) .tl-content { grid-column: 3; text-align: left; padding-left: 50px; }
+  .timeline-item:nth-child(even) .tl-empty { grid-column: 1; }
+  .tl-dot {
+    grid-column: 2; width: 16px; height: 16px; border-radius: 50%;
+    background: var(--gold); border: 3px solid var(--navy);
+    box-shadow: 0 0 15px rgba(201,162,39,0.6); margin: 4px auto 0;
+    position: relative; z-index: 2;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .timeline-item:hover .tl-dot {
+    transform: scale(1.5);
+    box-shadow: 0 0 25px rgba(201,162,39,0.8);
+  }
+  .tl-number {
+    font-family: 'Cinzel', serif; font-size: 11px;
+    color: rgba(201,162,39,0.5); letter-spacing: 0.2em;
+    margin-bottom: 8px;
+  }
+  .tl-title {
+    font-family: 'Cinzel', serif; font-size: 20px;
+    color: var(--gold-light); margin-bottom: 10px;
+  }
+  .tl-desc { font-size: 16px; color: rgba(255,255,255,0.65); line-height: 1.7; }
+
+  /* ===== GITA SECTION ===== */
+  #gita {
+    padding: 120px 0;
+    background: radial-gradient(ellipse at 50% 50%, #1a1040 0%, #090b1c 60%, var(--navy) 100%);
+    text-align: center;
+  }
+  .gita-ornament {
+    font-size: 48px; color: rgba(201,162,39,0.4); margin-bottom: 40px;
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    animation: omPulse 4s ease-in-out infinite;
+  }
+  .gita-quote-wrap {
+    max-width: 760px; margin: 40px auto;
+    position: relative;
+  }
+  .gita-quote-wrap::before, .gita-quote-wrap::after {
+    content: '';
+    position: absolute; left: 50%; transform: translateX(-50%);
+    width: 200px; height: 1px;
+    background: linear-gradient(to right, transparent, rgba(201,162,39,0.4), transparent);
+  }
+  .gita-quote-wrap::before { top: 0; }
+  .gita-quote-wrap::after { bottom: 0; }
+  .gita-sanskrit {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: clamp(22px, 3vw, 32px); color: var(--gold-light);
+    line-height: 1.5; margin: 24px 0;
+    text-shadow: 0 0 30px rgba(201,162,39,0.3);
+  }
+  .gita-translation {
+    font-family: 'Crimson Pro', serif; font-size: 22px;
+    font-style: italic; color: rgba(255,255,255,0.75);
+    line-height: 1.7; margin: 20px 0;
+  }
+  .gita-counter { font-size: 14px; color: rgba(201,162,39,0.5); margin-top: 20px; }
+  .gita-nav { display: flex; gap: 16px; justify-content: center; margin-top: 32px; }
+  .gita-btn {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: transparent; border: 1px solid rgba(201,162,39,0.4);
+    color: var(--gold); font-size: 18px; cursor: pointer;
+    transition: var(--transition); display: flex; align-items: center; justify-content: center;
+  }
+  .gita-btn:hover {
+    background: rgba(201,162,39,0.15); border-color: var(--gold);
+    box-shadow: 0 0 20px rgba(201,162,39,0.2);
+  }
+
+  /* ===== FLUTE SECTION ===== */
+  #flute-section {
+    padding: 100px 0; text-align: center;
+    background: linear-gradient(180deg, var(--navy), #0a0d20, var(--navy));
+  }
+  .flute-wrap {
+    position: relative; display: inline-block;
+    cursor: pointer; margin: 40px 0;
+  }
+  .flute-svg { width: 340px; filter: drop-shadow(0 0 15px rgba(201,162,39,0.3)); transition: filter 0.3s; }
+  .flute-wrap:hover .flute-svg { filter: drop-shadow(0 0 30px rgba(201,162,39,0.6)); }
+  .flute-glow {
+    position: absolute; inset: -20px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,162,39,0.1) 0%, transparent 70%);
+    pointer-events: none; transition: opacity 0.3s;
+  }
+  .flute-notes-wrap {
+    position: absolute; inset: 0; pointer-events: none;
+    overflow: visible;
+  }
+  .note-particle {
+    position: absolute; font-size: 20px; color: var(--gold);
+    animation: noteFloat 2s ease-out forwards;
+    pointer-events: none; opacity: 0;
+  }
+  @keyframes noteFloat {
+    0% { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(-120px) scale(1.5) rotate(20deg); }
+  }
+  .flute-message {
+    max-width: 480px; margin: 20px auto;
+    font-family: 'Crimson Pro', serif; font-size: 20px;
+    font-style: italic; color: rgba(255,255,255,0.7);
+    min-height: 60px; transition: opacity 0.5s;
+  }
+
+  /* ===== RADHA KRISHNA SECTION ===== */
+  #radha-krishna {
+    padding: 120px 0;
+    background: radial-gradient(ellipse at 50% 50%,
+      rgba(60,20,80,0.4) 0%, rgba(30,10,60,0.3) 40%, transparent 70%), var(--navy);
+    text-align: center; overflow: hidden;
+  }
+  .rk-heading {
+    font-family: 'Cinzel', serif; font-size: clamp(28px, 4vw, 52px);
+    font-weight: 400; line-height: 1.3;
+    background: linear-gradient(135deg, var(--pink-soft), var(--gold-light), var(--purple-soft));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; margin: 40px 0;
+  }
+  .rk-art {
+    width: 500px; max-width: 90%; height: 300px; margin: 40px auto;
+    position: relative;
+  }
+  .rk-flowers {
+    position: absolute; inset: 0; pointer-events: none;
+  }
+  .flower {
+    position: absolute; font-size: 20px;
+    animation: flowerFloat 6s ease-in-out infinite;
+  }
+  @keyframes flowerFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+    50% { transform: translateY(-20px) rotate(10deg); opacity: 1; }
+  }
+
+  /* ===== VRINDAVAN SECTION ===== */
+  #vrindavan {
+    padding: 100px 0; overflow: hidden;
+    background: linear-gradient(180deg, var(--navy), #08102a, var(--navy));
+  }
+  .vrindavan-inner { position: relative; }
+  .vr-scene {
+    position: relative; height: 400px; margin: 60px 0;
+    border: 1px solid rgba(201,162,39,0.1); border-radius: 4px; overflow: hidden;
+  }
+  .vr-sky {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, #03060f 0%, #060d25 30%, #0a1535 60%, #122040 100%);
+  }
+  .vr-moon {
+    position: absolute; top: 8%; left: 50%; transform: translateX(-50%);
+    width: 60px; height: 60px; border-radius: 50%;
+    background: radial-gradient(circle, #fffde7, #fef9c3 50%, #fde68a);
+    box-shadow: 0 0 30px rgba(255,245,160,0.5);
+  }
+  .vr-ground {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 40%;
+    background: linear-gradient(180deg, transparent, rgba(5,15,40,0.8) 40%, rgba(5,10,30,0.95) 100%);
+  }
+  .vr-river {
+    position: absolute; bottom: 25%; left: 0; right: 0; height: 40px;
+    background: linear-gradient(to right, rgba(15,30,80,0.6), rgba(20,40,100,0.8), rgba(15,30,80,0.6));
+  }
+  .vr-river::after {
+    content: ''; position: absolute; top: 4px; left: 20%; right: 20%; height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255,245,150,0.5), transparent);
+    animation: riverShimmer 3s infinite;
+  }
+  .vr-trees-l, .vr-trees-r {
+    position: absolute; bottom: 30%; width: 140px; height: 240px;
+    background: #010308;
+    clip-path: polygon(30% 100%, 0% 60%, 12% 65%, 4% 38%, 18% 48%, 8% 22%, 22% 33%, 18% 10%, 32% 26%, 28% 5%, 42% 20%, 38% 0%, 52% 17%, 48% 2%, 62% 18%, 58% 6%, 72% 24%, 68% 8%, 80% 30%, 76% 16%, 90% 42%, 84% 32%, 100% 58%, 78% 52%, 100% 100%);
+  }
+  .vr-trees-l { left: 0; }
+  .vr-trees-r { right: 0; transform: scaleX(-1); }
+  .vr-peacock {
+    position: absolute; bottom: 38%; right: 20%;
+    font-size: 36px; animation: flowerFloat 7s ease-in-out infinite;
+  }
+  .vr-butterfly {
+    position: absolute; font-size: 16px;
+    animation: butterflyFly 8s ease-in-out infinite;
+  }
+  @keyframes butterflyFly {
+    0% { transform: translate(0, 0) rotate(0deg); opacity: 0.8; }
+    25% { transform: translate(40px, -30px) rotate(10deg); opacity: 1; }
+    50% { transform: translate(80px, 10px) rotate(-5deg); opacity: 0.8; }
+    75% { transform: translate(40px, 40px) rotate(5deg); opacity: 1; }
+    100% { transform: translate(0, 0) rotate(0deg); opacity: 0.8; }
+  }
+  .parallax-text { transition: transform 0.1s linear; }
+
+  /* ===== TEACHINGS SECTION ===== */
+  #teachings {
+    padding: 120px 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(45,27,105,0.2), transparent 60%), var(--navy);
+  }
+  .teachings-header { text-align: center; margin-bottom: 80px; }
+  .teachings-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px;
+  }
+  .teaching-card {
+    background: rgba(255,255,255,0.025); border: 1px solid rgba(201,162,39,0.12);
+    border-radius: 4px; padding: 36px 28px; text-align: center;
+    transition: var(--transition); cursor: default;
+    position: relative; overflow: hidden;
+  }
+  .teaching-card::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(201,162,39,0.06), rgba(45,27,105,0.06));
+    opacity: 0; transition: opacity 0.4s;
+  }
+  .teaching-card:hover {
+    border-color: rgba(201,162,39,0.4);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 0 30px rgba(201,162,39,0.08);
+  }
+  .teaching-card:hover::after { opacity: 1; }
+  .teaching-symbol {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 40px; color: var(--gold); margin-bottom: 16px;
+    display: block; transition: transform 0.3s;
+  }
+  .teaching-card:hover .teaching-symbol { transform: scale(1.15); }
+  .teaching-title {
+    font-family: 'Cinzel', serif; font-size: 22px;
+    color: var(--gold-light); margin-bottom: 12px;
+  }
+  .teaching-desc { font-size: 17px; color: rgba(255,255,255,0.65); line-height: 1.7; }
+  .teaching-detail {
+    margin-top: 16px; font-size: 15px; color: rgba(255,255,255,0.45);
+    line-height: 1.6; max-height: 0; overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.4s;
+    opacity: 0;
+  }
+  .teaching-card:hover .teaching-detail { max-height: 100px; opacity: 1; }
+
+  /* ===== FESTIVALS SECTION ===== */
+  #festivals {
+    padding: 120px 0;
+    background: linear-gradient(180deg, var(--navy), #080b1e, var(--navy));
+  }
+  .festivals-header { text-align: center; margin-bottom: 80px; }
+  .festivals-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px;
+  }
+  .festival-card {
+    border-radius: 4px; overflow: hidden;
+    border: 1px solid rgba(201,162,39,0.15);
+    transition: var(--transition);
+    position: relative;
+  }
+  .festival-card:hover {
+    border-color: rgba(201,162,39,0.5);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(201,162,39,0.1);
+  }
+  .festival-header {
+    padding: 40px 28px 28px;
+    display: flex; flex-direction: column; align-items: flex-start; gap: 12px;
+  }
+  .festival-icon { font-size: 40px; }
+  .festival-name {
+    font-family: 'Cinzel', serif; font-size: 22px; color: var(--gold-light);
+  }
+  .festival-body { padding: 0 28px 28px; }
+  .festival-desc { font-size: 16px; color: rgba(255,255,255,0.65); line-height: 1.7; }
+  .festival-date {
+    margin-top: 16px; font-family: 'Cinzel', serif;
+    font-size: 12px; letter-spacing: 0.2em; color: rgba(201,162,39,0.6);
+  }
+  /* Festival gradient backgrounds */
+  .festival-card:nth-child(1) .festival-header { background: linear-gradient(135deg, #0d0820, #1a1040); }
+  .festival-card:nth-child(2) .festival-header { background: linear-gradient(135deg, #1a0820, #2d1040); }
+  .festival-card:nth-child(3) .festival-header { background: linear-gradient(135deg, #0d1820, #0f2540); }
+  .festival-card:nth-child(4) .festival-header { background: linear-gradient(135deg, #1a1020, #2d1a40); }
+
+  /* ===== PEACOCK FEATHER ===== */
+  .peacock-feather-float {
+    position: fixed; right: 28px; bottom: 80px; z-index: 500;
+    cursor: pointer; transition: transform 0.4s ease;
+  }
+  .peacock-feather-float:hover { transform: rotate(10deg) scale(1.1); }
+  .feather-svg { width: 48px; height: 80px; }
+  .feather-tooltip {
+    position: absolute; right: 60px; bottom: 0; width: 220px;
+    background: rgba(10,12,26,0.95); border: 1px solid rgba(201,162,39,0.3);
+    border-radius: 4px; padding: 14px; font-size: 14px;
+    color: rgba(255,255,255,0.75); line-height: 1.6;
+    opacity: 0; visibility: hidden; transition: var(--transition);
+    pointer-events: none;
+  }
+  .peacock-feather-float:hover .feather-tooltip { opacity: 1; visibility: visible; }
+
+  /* ===== CLOSING SECTION ===== */
+  #closing {
+    padding: 140px 0; text-align: center;
+    background: radial-gradient(ellipse at 50% 50%, rgba(45,27,105,0.2), transparent 60%),
+                linear-gradient(180deg, var(--navy), #07091a, var(--navy));
+    position: relative; overflow: hidden;
+  }
+  .lotus-wrap {
+    position: relative; width: 120px; height: 120px; margin: 0 auto 48px;
+  }
+  .lotus-svg { width: 100%; height: 100%; animation: lotusRotate 20s linear infinite; }
+  @keyframes lotusRotate {
+    to { transform: rotate(360deg); }
+  }
+  .lotus-center {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    font-size: 36px; color: var(--gold);
+    font-family: 'Noto Sans Devanagari', sans-serif;
+  }
+  .closing-title {
+    font-family: 'Cinzel', serif; font-size: clamp(24px, 3.5vw, 44px);
+    color: var(--cream); max-width: 700px; margin: 0 auto 32px;
+    line-height: 1.3;
+  }
+  .maha-mantra {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: clamp(14px, 2vw, 20px); color: var(--gold);
+    letter-spacing: 0.15em; line-height: 2;
+    text-shadow: 0 0 20px rgba(201,162,39,0.3);
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: rgba(0,0,0,0.4); border-top: 1px solid rgba(201,162,39,0.1);
+    padding: 60px 40px;
+  }
+  .footer-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; flex-wrap: wrap; justify-content: space-between;
+    gap: 40px; align-items: flex-start;
+  }
+  .footer-brand {
+    font-family: 'Cinzel', serif; font-size: 18px;
+    color: var(--gold-light);
+  }
+  .footer-tagline {
+    font-size: 14px; color: rgba(255,255,255,0.4); margin-top: 8px;
+  }
+  .footer-links { display: flex; gap: 32px; flex-wrap: wrap; }
+  .footer-links a {
+    font-family: 'Cinzel', serif; font-size: 12px;
+    letter-spacing: 0.15em; color: rgba(255,255,255,0.5);
+    text-decoration: none; transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--gold-light); }
+  .footer-bottom {
+    text-align: center; margin-top: 40px;
+    padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.05);
+    font-size: 14px; color: rgba(255,255,255,0.3);
+  }
+  .footer-bottom span { color: rgba(201,162,39,0.6); }
+
+  /* ===== MOBILE RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .nav-toggle { display: flex; }
+    .nav-mobile-open .nav-links {
+      display: flex; flex-direction: column; gap: 0;
+      position: fixed; top: 72px; left: 0; right: 0;
+      background: rgba(10,12,26,0.97); border-bottom: 1px solid rgba(201,162,39,0.1);
+      padding: 20px 24px;
+    }
+    .nav-mobile-open .nav-links a { padding: 14px 0; font-size: 16px; }
+    .presence-grid { grid-template-columns: 1fr; gap: 48px; }
+    .presence-image-wrap { order: -1; }
+    .presence-aura-wrap { width: 280px; height: 280px; }
+    .presence-circle { width: 280px; height: 280px; }
+    .timeline { padding-left: 0; }
+    .timeline::before { left: 24px; }
+    .timeline-item { grid-template-columns: 48px 1fr; }
+    .timeline-item:nth-child(odd) .tl-content,
+    .timeline-item:nth-child(even) .tl-content {
+      grid-column: 2; text-align: left; padding: 0 0 0 20px;
+    }
+    .timeline-item:nth-child(odd) .tl-empty,
+    .timeline-item:nth-child(even) .tl-empty { display: none; }
+    .tl-dot { grid-column: 1; margin: 4px 0 0; }
+    body { cursor: auto; }
+    #cursor-dot, #cursor-ring { display: none; }
+    .peacock-feather-float { display: none; }
+    .hero-buttons { gap: 12px; }
+    .section-inner { padding: 0 20px; }
+    .info-cards { grid-template-columns: 1fr; }
+    footer { padding: 40px 20px; }
+    .footer-inner { flex-direction: column; gap: 24px; }
+  }
+  @media (max-width: 600px) {
+    .teachings-grid { grid-template-columns: 1fr; }
+    .festivals-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- CUSTOM CURSOR -->
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<!-- LOADING SCREEN -->
+<div id="loader">
+  <div class="loader-ring"></div>
+  <div class="loader-ring r2"></div>
+  <div class="loader-om">ॐ</div>
+  <div class="loader-text">Welcome to the Divine World of Krishna</div>
+  <div class="loader-progress"><div class="loader-progress-bar"></div></div>
+</div>
+
+<!-- BACKGROUND PARTICLES CANVAS -->
+<canvas id="particles-canvas"></canvas>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo"><span>🪷</span> Shree Krishna</a>
+    <ul class="nav-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#divine-presence">Krishna</a></li>
+      <li><a href="#journey">Journey</a></li>
+      <li><a href="#gita">Gita</a></li>
+      <li><a href="#teachings">Teachings</a></li>
+      <li><a href="#vrindavan">Vrindavan</a></li>
+      <li><a href="#festivals">Festivals</a></li>
+    </ul>
+    <div class="nav-toggle" id="navToggle" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO SECTION ===== -->
+<section id="hero">
+  <div class="hero-sky"></div>
+  <div class="moon-halo"></div>
+  <div class="hero-moon"></div>
+  <div class="stars-layer" id="starsLayer"></div>
+  <div class="trees-left"><div class="tree-silhouette"></div></div>
+  <div class="trees-right"><div class="tree-silhouette"></div></div>
+  <div class="yamuna"></div>
+  <div class="krishna-aura"></div>
+
+  <!-- Krishna SVG Illustration -->
+  <div class="krishna-figure">
+    <svg viewBox="0 0 260 380" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="auraGrad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#c9a227" stop-opacity="0.3"/>
+          <stop offset="100%" stop-color="#c9a227" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="skinGrad" cx="40%" cy="40%" r="60%">
+          <stop offset="0%" stop-color="#2a5298"/>
+          <stop offset="100%" stop-color="#1a3a70"/>
+        </radialGradient>
+        <radialGradient id="crownGrad" cx="50%" cy="0%" r="80%">
+          <stop offset="0%" stop-color="#f0cc6a"/>
+          <stop offset="100%" stop-color="#c9a227"/>
+        </radialGradient>
+      </defs>
+      <!-- Divine aura background -->
+      <ellipse cx="130" cy="200" rx="120" ry="180" fill="url(#auraGrad)" opacity="0.5"/>
+      <!-- Peacock feather crown -->
+      <ellipse cx="130" cy="60" rx="20" ry="24" fill="url(#skinGrad)"/>
+      <!-- Crown / mukut -->
+      <path d="M112 62 Q130 30 148 62" fill="url(#crownGrad)" stroke="#c9a227" stroke-width="0.5"/>
+      <rect x="118" y="40" width="4" height="18" fill="#4CAF50" rx="2"/>
+      <rect x="126" y="35" width="4" height="22" fill="#2196F3" rx="2"/>
+      <rect x="134" y="40" width="4" height="18" fill="#4CAF50" rx="2"/>
+      <!-- Feather eye on crown -->
+      <ellipse cx="128" cy="36" rx="5" ry="7" fill="#1565C0"/>
+      <ellipse cx="128" cy="36" rx="3" ry="4" fill="#42A5F5"/>
+      <ellipse cx="128" cy="36" rx="1.5" ry="2" fill="#0D47A1"/>
+      <!-- Face -->
+      <ellipse cx="130" cy="75" rx="20" ry="22" fill="url(#skinGrad)"/>
+      <!-- Eyes -->
+      <ellipse cx="123" cy="73" rx="4" ry="3" fill="#fff" opacity="0.9"/>
+      <ellipse cx="137" cy="73" rx="4" ry="3" fill="#fff" opacity="0.9"/>
+      <circle cx="124" cy="73" r="2" fill="#1a1a3a"/>
+      <circle cx="138" cy="73" r="2" fill="#1a1a3a"/>
+      <circle cx="124.5" cy="72.3" r="0.6" fill="#fff" opacity="0.9"/>
+      <circle cx="138.5" cy="72.3" r="0.6" fill="#fff" opacity="0.9"/>
+      <!-- Nose & smile -->
+      <path d="M129 78 Q130 80 131 78" stroke="#1a3a70" stroke-width="1" fill="none"/>
+      <path d="M124 82 Q130 87 136 82" stroke="#c9a227" stroke-width="1" fill="none"/>
+      <!-- Bindi / tilak -->
+      <path d="M127 65 L130 60 L133 65" fill="#c9a227" opacity="0.8"/>
+      <circle cx="130" cy="65" r="2" fill="#c9a227" opacity="0.9"/>
+      <!-- Neck / garland -->
+      <path d="M118 95 Q130 98 142 95" stroke="#f0cc6a" stroke-width="2" fill="none"/>
+      <!-- Body / dhoti - blue -->
+      <path d="M105 100 Q100 160 105 230 Q118 240 130 238 Q142 240 155 230 Q160 160 155 100 Q142 95 130 93 Q118 95 105 100Z"
+            fill="url(#skinGrad)" opacity="0.9"/>
+      <!-- Yellow dhoti lower -->
+      <path d="M104 180 Q118 190 130 188 Q142 190 156 180 Q158 220 130 230 Q102 220 104 180Z"
+            fill="#c9a227" opacity="0.8"/>
+      <!-- Pitambar sash -->
+      <path d="M108 145 Q130 150 152 145" stroke="#f0cc6a" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <!-- Flute (held at slight angle) -->
+      <line x1="85" y1="130" x2="175" y2="145" stroke="#c8a97a" stroke-width="5" stroke-linecap="round"/>
+      <line x1="85" y1="130" x2="175" y2="145" stroke="#f0d89a" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+      <!-- Flute holes -->
+      <circle cx="105" cy="133" r="2" fill="#8B6914"/>
+      <circle cx="115" cy="135" r="2" fill="#8B6914"/>
+      <circle cx="125" cy="136" r="2" fill="#8B6914"/>
+      <circle cx="135" cy="137" r="2" fill="#8B6914"/>
+      <circle cx="145" cy="139" r="2" fill="#8B6914"/>
+      <circle cx="155" cy="141" r="2" fill="#8B6914"/>
+      <!-- Arms -->
+      <path d="M105 110 Q90 125 88 133" stroke="url(#skinGrad)" stroke-width="14" fill="none" stroke-linecap="round"/>
+      <path d="M155 110 Q168 120 172 142" stroke="url(#skinGrad)" stroke-width="14" fill="none" stroke-linecap="round"/>
+      <!-- Wristbands -->
+      <rect x="84" y="128" width="8" height="4" rx="2" fill="#f0cc6a"/>
+      <rect x="168" y="139" width="8" height="4" rx="2" fill="#f0cc6a"/>
+      <!-- Peacock feather in hair flowing -->
+      <path d="M138 55 Q155 30 165 10" stroke="#4CAF50" stroke-width="2" fill="none"/>
+      <path d="M138 55 Q160 28 170 8" stroke="#42A5F5" stroke-width="1" fill="none" opacity="0.7"/>
+      <ellipse cx="166" cy="10" rx="8" ry="12" fill="#1565C0" opacity="0.7"/>
+      <ellipse cx="166" cy="10" rx="5" ry="8" fill="#42A5F5" opacity="0.8"/>
+      <ellipse cx="166" cy="10" rx="2.5" ry="4" fill="#0D47A1"/>
+      <!-- Legs subtle -->
+      <path d="M116 228 Q114 270 116 290" stroke="url(#skinGrad)" stroke-width="14" fill="none" stroke-linecap="round"/>
+      <path d="M144 228 Q146 270 144 290" stroke="url(#skinGrad)" stroke-width="14" fill="none" stroke-linecap="round"/>
+      <!-- Feet -->
+      <ellipse cx="116" cy="294" rx="12" ry="6" fill="#1a3a70"/>
+      <ellipse cx="144" cy="294" rx="12" ry="6" fill="#1a3a70"/>
+      <!-- Anklets -->
+      <rect x="107" y="290" width="16" height="3" rx="1.5" fill="#f0cc6a"/>
+      <rect x="135" y="290" width="16" height="3" rx="1.5" fill="#f0cc6a"/>
+      <!-- Golden glow particles around figure -->
+      <circle cx="90" cy="150" r="3" fill="#c9a227" opacity="0.6">
+        <animate attributeName="opacity" values="0.6;0.1;0.6" dur="3s" repeatCount="indefinite"/>
+        <animate attributeName="cy" values="150;140;150" dur="3s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="170" cy="120" r="2" fill="#c9a227" opacity="0.5">
+        <animate attributeName="opacity" values="0.5;0.1;0.5" dur="4s" repeatCount="indefinite"/>
+        <animate attributeName="cy" values="120;108;120" dur="4s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="100" cy="90" r="2" fill="#f0cc6a" opacity="0.4">
+        <animate attributeName="opacity" values="0.4;0.9;0.4" dur="2.5s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="160" cy="200" r="3" fill="#f0cc6a" opacity="0.4">
+        <animate attributeName="opacity" values="0.4;0.8;0.4" dur="3.5s" repeatCount="indefinite"/>
+        <animate attributeName="cy" values="200;188;200" dur="3.5s" repeatCount="indefinite"/>
+      </circle>
+    </svg>
+  </div>
+
+  <!-- Floating petals -->
+  <div id="petals-container"></div>
+
+  <div class="hero-content">
+    <div class="hero-hindi">हरे कृष्ण 🙏</div>
+    <div class="hero-subtitle">Experience the Divine Love, Wisdom & Grace of Lord Krishna</div>
+    <div class="hero-buttons">
+      <a href="#divine-presence" class="btn btn-primary">Explore Krishna</a>
+      <a href="#vrindavan" class="btn btn-secondary">Enter Vrindavan</a>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span>scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ===== DIVINE PRESENCE SECTION ===== -->
+<section id="divine-presence">
+  <div class="section-inner">
+    <div class="presence-grid">
+      <div class="presence-left reveal">
+        <span class="section-eyebrow">The Lord of Vrindavan</span>
+        <h2 class="section-title">The Divine Presence <span class="gold">of Krishna</span></h2>
+        <div class="divider" style="margin-left:0;"></div>
+        <p class="section-desc">
+          Lord Krishna, the eighth avatar of Lord Vishnu, embodies the eternal dance of love,
+          wisdom, and grace. His flute song calls all souls homeward to the divine.
+        </p>
+        <div class="info-cards reveal reveal-delay-2">
+          <div class="info-card">
+            <div class="info-card-icon">🪈</div>
+            <div class="info-card-title">The Flute</div>
+            <div class="info-card-desc">The flute symbolizes the hollow reed that surrenders completely to Krishna's breath — the soul surrendered to the divine.</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">🦚</div>
+            <div class="info-card-title">The Peacock Feather</div>
+            <div class="info-card-desc">Adorning his crown, the peacock feather represents beauty, humility, and the divine grace that colors all of existence.</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">✨</div>
+            <div class="info-card-title">The Divine Smile</div>
+            <div class="info-card-desc">Krishna's eternal smile reassures every soul that beneath all cosmic play, only love and bliss are real.</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">💛</div>
+            <div class="info-card-title">The Eternal Love</div>
+            <div class="info-card-desc">Radha and Krishna's love is the highest expression of devotion — beyond time, beyond form, beyond separation.</div>
+          </div>
+        </div>
+      </div>
+      <div class="presence-image-wrap reveal reveal-delay-1">
+        <div class="presence-aura-wrap" id="auraWrap">
+          <div class="presence-aura" id="presenceAura"></div>
+          <div class="presence-circle">
+            <div class="presence-krishna-art">
+              <svg viewBox="0 0 280 280" width="240" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <radialGradient id="bg2" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#c9a227" stop-opacity="0.08"/>
+                    <stop offset="100%" stop-color="#1a1040" stop-opacity="0.4"/>
+                  </radialGradient>
+                  <radialGradient id="sk2" cx="40%" cy="35%" r="65%">
+                    <stop offset="0%" stop-color="#3a6fc8"/>
+                    <stop offset="100%" stop-color="#1a3a70"/>
+                  </radialGradient>
+                </defs>
+                <circle cx="140" cy="140" r="135" fill="url(#bg2)"/>
+                <!-- Lotus petals background -->
+                <g opacity="0.2">
+                  <ellipse cx="140" cy="60" rx="12" ry="30" fill="#c9a227" transform="rotate(0 140 140)"/>
+                  <ellipse cx="140" cy="60" rx="12" ry="30" fill="#c9a227" transform="rotate(30 140 140)"/>
+                  <ellipse cx="140" cy="60" rx="12" ry="30" fill="#c9a227" transform="rotate(60 140 140)"/>
+                  <ellipse cx="140" cy="60" rx="12" ry="30" fill="#c9a227" transform="rotate(90 140 140)"/>
+                  <ellipse cx="140" cy="60" rx="12" ry="30" fill="#c9a227" transform="rotate(120 140 140)"/>
+                  <ellipse cx="140" cy="60" rx="12" ry="30" fill="#c9a227" transform="rotate(150 140 140)"/>
+                  <ellipse cx="140" cy="60" rx="12" ry="30" fill="#c9a227" transform="rotate(180 140 140)"/>
+                  <ellipse cx="140" cy="60" rx="12" ry="30" fill="#c9a227" transform="rotate(210 140 140)"/>
+                  <ellipse cx="140" cy="60" rx="12" ry="30" fill="#c9a227" transform="rotate(240 140 140)"/>
+                  <ellipse cx="140" cy="60" rx="12" ry="30" fill="#c9a227" transform="rotate(270 140 140)"/>
+                  <ellipse cx="140" cy="60" rx="12" ry="30" fill="#c9a227" transform="rotate(300 140 140)"/>
+                  <ellipse cx="140" cy="60" rx="12" ry="30" fill="#c9a227" transform="rotate(330 140 140)"/>
+                </g>
+                <!-- Face -->
+                <ellipse cx="140" cy="120" rx="38" ry="44" fill="url(#sk2)"/>
+                <!-- Crown -->
+                <path d="M112 115 Q140 75 168 115" fill="#c9a227" opacity="0.8"/>
+                <rect x="134" y="80" width="6" height="28" fill="#4CAF50" rx="3"/>
+                <ellipse cx="137" cy="80" rx="10" ry="14" fill="#1565C0" opacity="0.7"/>
+                <ellipse cx="137" cy="80" rx="6" ry="9" fill="#42A5F5" opacity="0.8"/>
+                <ellipse cx="137" cy="80" rx="3" ry="4.5" fill="#0D47A1"/>
+                <!-- Eyes large & expressive -->
+                <ellipse cx="130" cy="118" rx="8" ry="6" fill="#fff" opacity="0.9"/>
+                <ellipse cx="150" cy="118" rx="8" ry="6" fill="#fff" opacity="0.9"/>
+                <circle cx="131" cy="118" r="4" fill="#0d1235"/>
+                <circle cx="151" cy="118" r="4" fill="#0d1235"/>
+                <circle cx="132" cy="116.5" r="1.2" fill="#fff" opacity="0.9"/>
+                <circle cx="152" cy="116.5" r="1.2" fill="#fff" opacity="0.9"/>
+                <!-- Lotus eyes liner -->
+                <path d="M122 116 Q130 110 138 116" stroke="#c9a227" stroke-width="1.5" fill="none"/>
+                <path d="M142 116 Q150 110 158 116" stroke="#c9a227" stroke-width="1.5" fill="none"/>
+                <!-- Tilak -->
+                <path d="M136 104 L140 97 L144 104" fill="#c9a227" opacity="0.9"/>
+                <circle cx="140" cy="104" r="3" fill="#c9a227"/>
+                <!-- Smile -->
+                <path d="M133 130 Q140 137 147 130" stroke="#c9a227" stroke-width="2" fill="none" stroke-linecap="round"/>
+                <!-- Garland -->
+                <path d="M115 155 Q140 162 165 155" stroke="#f0cc6a" stroke-width="3" fill="none"/>
+                <!-- Body -->
+                <path d="M105 158 Q100 210 110 250 Q125 260 140 258 Q155 260 170 250 Q180 210 175 158 Q158 150 140 148 Q122 150 105 158Z" fill="url(#sk2)" opacity="0.85"/>
+                <!-- Dhoti yellow -->
+                <path d="M104 215 Q122 225 140 223 Q158 225 176 215 Q175 250 140 258 Q105 250 104 215Z" fill="#c9a227" opacity="0.7"/>
+                <!-- Flute -->
+                <line x1="90" y1="180" x2="192" y2="196" stroke="#c8a97a" stroke-width="6" stroke-linecap="round"/>
+                <!-- Arms -->
+                <path d="M105 168 Q90 178 92 182" stroke="url(#sk2)" stroke-width="16" fill="none" stroke-linecap="round"/>
+                <path d="M175 168 Q190 175 190 195" stroke="url(#sk2)" stroke-width="16" fill="none" stroke-linecap="round"/>
+                <!-- Golden glow particles -->
+                <circle cx="80" cy="170" r="3" fill="#c9a227" opacity="0.5">
+                  <animate attributeName="opacity" values="0.5;0.1;0.5" dur="2s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="200" cy="150" r="2.5" fill="#f0cc6a" opacity="0.5">
+                  <animate attributeName="opacity" values="0.5;0.1;0.5" dur="3s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="140" cy="50" r="2" fill="#c9a227" opacity="0.6">
+                  <animate attributeName="opacity" values="0.6;0;0.6" dur="2.5s" repeatCount="indefinite"/>
+                  <animate attributeName="cy" values="50;40;50" dur="2.5s" repeatCount="indefinite"/>
+                </circle>
+              </svg>
+            </div>
+          </div>
+          <div class="presence-particles" id="presenceParticles"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LIFE JOURNEY TIMELINE ===== -->
+<section id="journey">
+  <div class="section-inner">
+    <div class="timeline-header reveal">
+      <span class="section-eyebrow">The Divine Story</span>
+      <h2 class="section-title">Krishna's Life <span class="gold">Journey</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="tl-content">
+          <div class="tl-number">01</div>
+          <div class="tl-title">Birth in Mathura</div>
+          <div class="tl-desc">Born in a prison cell to Devaki and Vasudeva, Krishna's divine birth was heralded by celestial music and flowers. The shackles fell away as the divine child appeared at midnight on Ashtami.</div>
+        </div>
+        <div class="tl-dot"></div>
+        <div class="tl-empty"></div>
+      </div>
+      <div class="timeline-item reveal reveal-delay-1">
+        <div class="tl-empty"></div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="tl-number">02</div>
+          <div class="tl-title">Childhood in Gokul</div>
+          <div class="tl-desc">Raised by Yashoda and Nanda, little Kanha enchanted all of Gokul with his mischief — stealing butter, dancing on Kaliya serpent, and showing his cosmic form to his mother.</div>
+        </div>
+      </div>
+      <div class="timeline-item reveal reveal-delay-2">
+        <div class="tl-content">
+          <div class="tl-number">03</div>
+          <div class="tl-title">Vrindavan — The Forest of Love</div>
+          <div class="tl-desc">In the sacred groves of Vrindavan, Krishna played his flute and performed the Rasa Leela with the gopis. Every moment in Vrindavan was a divine poem of love and devotion.</div>
+        </div>
+        <div class="tl-dot"></div>
+        <div class="tl-empty"></div>
+      </div>
+      <div class="timeline-item reveal reveal-delay-1">
+        <div class="tl-empty"></div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="tl-number">04</div>
+          <div class="tl-title">Govardhan Hill</div>
+          <div class="tl-desc">When Indra sent devastating rains to punish Vrindavan, Krishna lifted the mighty Govardhan Hill on his little finger for seven days, sheltering all beings beneath it.</div>
+        </div>
+      </div>
+      <div class="timeline-item reveal reveal-delay-2">
+        <div class="tl-content">
+          <div class="tl-number">05</div>
+          <div class="tl-title">Return to Mathura</div>
+          <div class="tl-desc">Answering his divine duty, Krishna returned to Mathura, slew the tyrant Kamsa, and restored Devaki and Vasudeva to their rightful place. Justice and dharma were restored.</div>
+        </div>
+        <div class="tl-dot"></div>
+        <div class="tl-empty"></div>
+      </div>
+      <div class="timeline-item reveal reveal-delay-1">
+        <div class="tl-empty"></div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="tl-number">06</div>
+          <div class="tl-title">Dwarka — Kingdom of the Sea</div>
+          <div class="tl-desc">Krishna established Dwarka, the golden city rising from the ocean, and ruled as king — an ideal statesman, strategist, and friend to all who sought his shelter.</div>
+        </div>
+      </div>
+      <div class="timeline-item reveal reveal-delay-2">
+        <div class="tl-content">
+          <div class="tl-number">07</div>
+          <div class="tl-title">Mahabharata</div>
+          <div class="tl-desc">The pivotal war of Kurukshetra — where Krishna served as Arjuna's charioteer. Through his divine counsel, the world witnessed dharma prevail over adharma in the greatest battle ever fought.</div>
+        </div>
+        <div class="tl-dot"></div>
+        <div class="tl-empty"></div>
+      </div>
+      <div class="timeline-item reveal reveal-delay-1">
+        <div class="tl-empty"></div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="tl-number">08</div>
+          <div class="tl-title">Bhagavad Gita</div>
+          <div class="tl-desc">On the battlefield of Kurukshetra, with Arjuna overwhelmed by grief, Krishna revealed the eternal wisdom of the Bhagavad Gita — 700 verses that have guided humanity for millennia.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BHAGAVAD GITA SECTION ===== -->
+<section id="gita">
+  <div class="section-inner">
+    <div class="reveal">
+      <span class="section-eyebrow">Timeless Wisdom</span>
+      <h2 class="section-title">Wisdom of the <span class="gold">Bhagavad Gita</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="gita-ornament reveal">ॐ</div>
+    <div class="gita-quote-wrap reveal reveal-delay-1">
+      <div style="height:24px"></div>
+      <div class="gita-sanskrit" id="gitaSanskrit">कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।</div>
+      <div class="gita-translation" id="gitaTranslation">You have the right to perform your duty, but not to the fruits of your actions.</div>
+      <div class="gita-counter" id="gitaCounter">1 of 8</div>
+      <div style="height:24px"></div>
+    </div>
+    <div class="gita-nav reveal reveal-delay-2">
+      <button class="gita-btn" onclick="prevVerse()">←</button>
+      <a href="#teachings" class="btn btn-secondary" style="font-size:12px; letter-spacing:0.2em;">Discover More Wisdom</a>
+      <button class="gita-btn" onclick="nextVerse()">→</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FLUTE SECTION ===== -->
+<section id="flute-section">
+  <div class="section-inner">
+    <div class="reveal">
+      <span class="section-eyebrow">The Divine Instrument</span>
+      <h2 class="section-title">The <span class="gold">Divine Flute</span></h2>
+      <div class="divider"></div>
+      <p class="section-desc" style="margin: 0 auto 20px; text-align:center;">
+        Click the flute and feel the divine vibration of Krishna's music filling your soul.
+      </p>
+    </div>
+    <div class="flute-wrap reveal reveal-delay-1" onclick="playFlute(this)" id="fluteWrap">
+      <div class="flute-glow"></div>
+      <svg class="flute-svg" viewBox="0 0 340 60" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="fluteGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#8B6914"/>
+            <stop offset="20%" stop-color="#c8a97a"/>
+            <stop offset="50%" stop-color="#f0d89a"/>
+            <stop offset="80%" stop-color="#c8a97a"/>
+            <stop offset="100%" stop-color="#8B6914"/>
+          </linearGradient>
+        </defs>
+        <!-- Flute body -->
+        <rect x="8" y="22" width="324" height="16" rx="8" fill="url(#fluteGrad)"/>
+        <!-- Mouthpiece -->
+        <rect x="8" y="22" width="30" height="16" rx="8" fill="#c9a227"/>
+        <!-- Finger holes -->
+        <circle cx="80" cy="30" r="5" fill="#8B6914" stroke="#f0d89a" stroke-width="1"/>
+        <circle cx="108" cy="30" r="5" fill="#8B6914" stroke="#f0d89a" stroke-width="1"/>
+        <circle cx="136" cy="30" r="5" fill="#8B6914" stroke="#f0d89a" stroke-width="1"/>
+        <circle cx="164" cy="30" r="5" fill="#8B6914" stroke="#f0d89a" stroke-width="1"/>
+        <circle cx="192" cy="30" r="5" fill="#8B6914" stroke="#f0d89a" stroke-width="1"/>
+        <circle cx="220" cy="30" r="5" fill="#8B6914" stroke="#f0d89a" stroke-width="1"/>
+        <circle cx="248" cy="30" r="5" fill="#8B6914" stroke="#f0d89a" stroke-width="1"/>
+        <!-- Decorative rings -->
+        <rect x="60" y="22" width="3" height="16" rx="1" fill="#c9a227" opacity="0.6"/>
+        <rect x="275" y="22" width="3" height="16" rx="1" fill="#c9a227" opacity="0.6"/>
+        <rect x="300" y="22" width="3" height="16" rx="1" fill="#c9a227" opacity="0.4"/>
+      </svg>
+      <div class="flute-notes-wrap" id="fluteNotes"></div>
+    </div>
+    <div class="flute-message reveal reveal-delay-2" id="fluteMessage">
+      ✨ Click the flute to hear Krishna's divine melody...
+    </div>
+  </div>
+</section>
+
+<!-- ===== RADHA KRISHNA SECTION ===== -->
+<section id="radha-krishna">
+  <div class="section-inner">
+    <div class="reveal">
+      <span class="section-eyebrow">Divine Union</span>
+      <h2 class="rk-heading">Where There Is Love,<br>There Is Krishna</h2>
+    </div>
+    <div class="rk-art reveal reveal-delay-1">
+      <svg viewBox="0 0 500 260" width="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="rkGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="rgba(201,162,39,0.15)"/>
+            <stop offset="100%" stop-color="transparent"/>
+          </radialGradient>
+          <radialGradient id="rSkin" cx="40%" cy="35%" r="60%">
+            <stop offset="0%" stop-color="#e8a4c0"/>
+            <stop offset="100%" stop-color="#c87d9e"/>
+          </radialGradient>
+          <radialGradient id="kSkin2" cx="40%" cy="35%" r="60%">
+            <stop offset="0%" stop-color="#3a6fc8"/>
+            <stop offset="100%" stop-color="#1a3a70"/>
+          </radialGradient>
+        </defs>
+        <!-- Glow background -->
+        <ellipse cx="250" cy="130" rx="200" ry="120" fill="url(#rkGlow)"/>
+        <!-- Lotus petals decoration -->
+        <g opacity="0.15" transform="translate(250,130)">
+          <ellipse cx="0" cy="-90" rx="15" ry="35" fill="#f5c2d5"/>
+          <ellipse cx="0" cy="-90" rx="15" ry="35" fill="#c9aeed" transform="rotate(45)"/>
+          <ellipse cx="0" cy="-90" rx="15" ry="35" fill="#f5c2d5" transform="rotate(90)"/>
+          <ellipse cx="0" cy="-90" rx="15" ry="35" fill="#c9aeed" transform="rotate(135)"/>
+          <ellipse cx="0" cy="-90" rx="15" ry="35" fill="#f5c2d5" transform="rotate(180)"/>
+          <ellipse cx="0" cy="-90" rx="15" ry="35" fill="#c9aeed" transform="rotate(225)"/>
+          <ellipse cx="0" cy="-90" rx="15" ry="35" fill="#f5c2d5" transform="rotate(270)"/>
+          <ellipse cx="0" cy="-90" rx="15" ry="35" fill="#c9aeed" transform="rotate(315)"/>
+        </g>
+
+        <!-- RADHA (left) -->
+        <!-- Radha's gown / body -->
+        <path d="M155 110 Q140 150 145 245 Q165 258 180 255 Q195 258 195 180 Q195 140 185 115Z" fill="#c87d9e" opacity="0.8"/>
+        <!-- Dupatta / sari drape -->
+        <path d="M145 130 Q130 160 135 200 Q145 190 155 210 Q160 170 155 130Z" fill="#9b59a0" opacity="0.7"/>
+        <!-- Radha head -->
+        <ellipse cx="175" cy="92" rx="26" ry="28" fill="url(#rSkin)"/>
+        <!-- Radha crown -->
+        <path d="M155 88 Q175 62 195 88" fill="#f5c2d5" opacity="0.8" stroke="#c9a227" stroke-width="0.5"/>
+        <!-- Radha eyes -->
+        <ellipse cx="168" cy="89" rx="6" ry="4.5" fill="#fff" opacity="0.9"/>
+        <ellipse cx="182" cy="89" rx="6" ry="4.5" fill="#fff" opacity="0.9"/>
+        <circle cx="169" cy="89" r="3" fill="#1a0a2e"/>
+        <circle cx="183" cy="89" r="3" fill="#1a0a2e"/>
+        <circle cx="170" cy="88" r="0.9" fill="#fff" opacity="0.9"/>
+        <circle cx="184" cy="88" r="0.9" fill="#fff" opacity="0.9"/>
+        <path d="M163 95 Q175 101 187 95" stroke="#c9a227" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <!-- Radha bindi -->
+        <circle cx="175" cy="81" r="3" fill="#c9a227"/>
+        <!-- Radha flowers in hair -->
+        <circle cx="158" cy="75" r="4" fill="#f5c2d5"/>
+        <circle cx="192" cy="75" r="4" fill="#f5c2d5"/>
+
+        <!-- KRISHNA (right) -->
+        <path d="M305 108 Q315 150 315 245 Q300 258 285 255 Q270 258 270 190 Q268 145 280 112Z" fill="#1a3a70" opacity="0.8"/>
+        <!-- Krishna dhoti yellow -->
+        <path d="M268 205 Q285 215 300 213 Q315 215 318 200 Q316 245 285 255 Q268 245 268 205Z" fill="#c9a227" opacity="0.7"/>
+        <!-- Krishna head -->
+        <ellipse cx="295" cy="90" rx="27" ry="29" fill="url(#kSkin2)"/>
+        <!-- Krishna crown -->
+        <path d="M274 85 Q295 58 316 85" fill="#c9a227" opacity="0.8"/>
+        <rect x="291" y="62" width="5" height="22" fill="#4CAF50" rx="2.5"/>
+        <ellipse cx="293.5" cy="62" rx="8" ry="12" fill="#1565C0" opacity="0.8"/>
+        <ellipse cx="293.5" cy="62" rx="5" ry="7.5" fill="#42A5F5" opacity="0.8"/>
+        <!-- Krishna eyes -->
+        <ellipse cx="287" cy="88" rx="6.5" ry="5" fill="#fff" opacity="0.9"/>
+        <ellipse cx="303" cy="88" rx="6.5" ry="5" fill="#fff" opacity="0.9"/>
+        <circle cx="288" cy="88" r="3.2" fill="#0a0c1a"/>
+        <circle cx="304" cy="88" r="3.2" fill="#0a0c1a"/>
+        <circle cx="289" cy="86.8" r="1" fill="#fff" opacity="0.9"/>
+        <circle cx="305" cy="86.8" r="1" fill="#fff" opacity="0.9"/>
+        <path d="M281 95 Q295 102 309 95" stroke="#c9a227" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <!-- Krishna tilak -->
+        <path d="M291 77 L295 70 L299 77" fill="#c9a227"/>
+        <circle cx="295" cy="77" r="2.5" fill="#c9a227"/>
+        <!-- Krishna flute -->
+        <line x1="265" y1="165" x2="340" y2="178" stroke="#c8a97a" stroke-width="5" stroke-linecap="round"/>
+
+        <!-- Shared garland between them -->
+        <path d="M195 130 Q235 120 270 130" stroke="#f0cc6a" stroke-width="3" fill="none" stroke-dasharray="6,4" opacity="0.7"/>
+
+        <!-- Floating flowers between them -->
+        <text x="225" y="100" font-size="14" opacity="0.7">🌸</text>
+        <text x="240" y="130" font-size="12" opacity="0.6">✿</text>
+        <text x="215" y="145" font-size="10" opacity="0.5">🌺</text>
+
+        <!-- Golden divine light rays between them -->
+        <line x1="200" y1="120" x2="270" y2="120" stroke="#c9a227" stroke-width="0.5" opacity="0.3" stroke-dasharray="3,6"/>
+        <line x1="200" y1="130" x2="270" y2="130" stroke="#c9a227" stroke-width="0.5" opacity="0.2" stroke-dasharray="3,6"/>
+      </svg>
+    </div>
+    <p class="section-desc reveal reveal-delay-2" style="text-align:center; margin:0 auto;">
+      Radha and Krishna are inseparable — two bodies, one soul. Their divine love is the universe's
+      purest poem, teaching us that love itself is the highest form of worship.
+    </p>
+  </div>
+  <!-- Floating flowers -->
+  <div class="rk-flowers" id="rkFlowers"></div>
+</section>
+
+<!-- ===== VRINDAVAN SECTION ===== -->
+<section id="vrindavan">
+  <div class="section-inner">
+    <div class="reveal">
+      <span class="section-eyebrow">The Sacred Forest</span>
+      <h2 class="section-title">Vrindavan — <span class="gold">Divine Abode</span></h2>
+      <div class="divider"></div>
+      <p class="section-desc" style="margin:0 auto; text-align:center;">
+        Move your mouse over the scene to feel the gentle breeze of Vrindavan.
+      </p>
+    </div>
+    <div class="vr-scene reveal reveal-delay-1" id="vrScene">
+      <div class="vr-sky"></div>
+      <div class="vr-moon"></div>
+      <!-- Stars in scene -->
+      <div id="vrStars"></div>
+      <div class="vr-trees-l parallax-text" data-speed="0.3"></div>
+      <div class="vr-trees-r parallax-text" data-speed="0.3"></div>
+      <div class="vr-ground"></div>
+      <div class="vr-river"></div>
+      <div class="vr-peacock">🦚</div>
+      <div class="vr-butterfly" style="left:30%; top:40%;">🦋</div>
+      <div class="vr-butterfly" style="left:60%; top:30%; animation-delay:2s; animation-duration:10s;">🦋</div>
+      <!-- Fireflies in scene -->
+      <div id="vrFireflies"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TEACHINGS SECTION ===== -->
+<section id="teachings">
+  <div class="section-inner">
+    <div class="teachings-header reveal">
+      <span class="section-eyebrow">Divine Philosophy</span>
+      <h2 class="section-title">Krishna's <span class="gold">Teachings</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="teachings-grid">
+      <div class="teaching-card reveal">
+        <span class="teaching-symbol">धर्म</span>
+        <div class="teaching-title">Dharma</div>
+        <div class="teaching-desc">Perform your duty with sincerity and without selfish motive. Your role in the cosmic order is sacred.</div>
+        <div class="teaching-detail">Each soul is born with a unique dharma — a sacred purpose. When we live in alignment with our true nature and duty, we contribute to the harmony of the universe.</div>
+      </div>
+      <div class="teaching-card reveal reveal-delay-1">
+        <span class="teaching-symbol">कर्म</span>
+        <div class="teaching-title">Karma</div>
+        <div class="teaching-desc">Focus entirely on your actions rather than the results. The fruits will follow naturally from pure effort.</div>
+        <div class="teaching-detail">The law of karma is perfect justice. Every thought, word, and action creates ripples in the fabric of existence. Act from love, not from fear of outcome.</div>
+      </div>
+      <div class="teaching-card reveal reveal-delay-2">
+        <span class="teaching-symbol">भक्ति</span>
+        <div class="teaching-title">Bhakti</div>
+        <div class="teaching-desc">Devotion creates the deepest connection with the divine. Love is the fastest path to liberation.</div>
+        <div class="teaching-detail">Bhakti yoga — the path of devotion — is available to all, regardless of learning or status. When the heart overflows with love for the divine, the veil of illusion dissolves.</div>
+      </div>
+      <div class="teaching-card reveal reveal-delay-3">
+        <span class="teaching-symbol">शांति</span>
+        <div class="teaching-title">Peace</div>
+        <div class="teaching-desc">Steady the mind and remain balanced in joy and sorrow, gain and loss. Equanimity is true strength.</div>
+        <div class="teaching-detail">Peace is not the absence of challenge but the presence of perfect stillness within it. The enlightened soul remains like a lamp unflickered by wind — luminous and steady.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FESTIVALS SECTION ===== -->
+<section id="festivals">
+  <div class="section-inner">
+    <div class="festivals-header reveal">
+      <span class="section-eyebrow">Sacred Celebrations</span>
+      <h2 class="section-title">Divine <span class="gold">Festivals</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="festivals-grid">
+      <div class="festival-card reveal">
+        <div class="festival-header">
+          <div class="festival-icon">🪔</div>
+          <div class="festival-name">Janmashtami</div>
+        </div>
+        <div class="festival-body">
+          <div class="festival-desc">The grand celebration of Lord Krishna's birth. Devotees fast, sing, dance, and break the Dahi Handi at the stroke of midnight — the divine moment when Krishna entered our world.</div>
+          <div class="festival-date">Bhadra Ashtami · August–September</div>
+        </div>
+      </div>
+      <div class="festival-card reveal reveal-delay-1">
+        <div class="festival-header">
+          <div class="festival-icon">🎨</div>
+          <div class="festival-name">Holi</div>
+        </div>
+        <div class="festival-body">
+          <div class="festival-desc">The festival of colors celebrates Krishna and Radha's divine playfulness in Vrindavan. Devotees drench each other in vibrant hues, celebrating the victory of love and spring's arrival.</div>
+          <div class="festival-date">Phalguna Purnima · February–March</div>
+        </div>
+      </div>
+      <div class="festival-card reveal reveal-delay-2">
+        <div class="festival-header">
+          <div class="festival-icon">⛰️</div>
+          <div class="festival-name">Govardhan Puja</div>
+        </div>
+        <div class="festival-body">
+          <div class="festival-desc">Commemorating Krishna's miraculous lifting of Govardhan Hill to protect Vrindavan from Indra's wrath. Devotees build mountains of food and perform circumambulation with devotion.</div>
+          <div class="festival-date">Kartik Shukla Pratipada · October–November</div>
+        </div>
+      </div>
+      <div class="festival-card reveal reveal-delay-3">
+        <div class="festival-header">
+          <div class="festival-icon">🌸</div>
+          <div class="festival-name">Radhashtami</div>
+        </div>
+        <div class="festival-body">
+          <div class="festival-desc">The sacred appearance day of Shrimati Radharani — the divine consort of Krishna. Her love for Krishna is considered the highest form of devotion and the embodiment of pure bhakti.</div>
+          <div class="festival-date">Bhadra Shukla Ashtami · August–September</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CLOSING SECTION ===== -->
+<section id="closing">
+  <div class="section-inner" style="text-align:center;">
+    <div class="lotus-wrap reveal">
+      <!-- Lotus SVG -->
+      <svg class="lotus-svg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <g transform="translate(60,60)">
+          <ellipse cx="0" cy="-38" rx="10" ry="22" fill="rgba(201,162,39,0.25)" transform="rotate(0)"/>
+          <ellipse cx="0" cy="-38" rx="10" ry="22" fill="rgba(201,162,39,0.25)" transform="rotate(45)"/>
+          <ellipse cx="0" cy="-38" rx="10" ry="22" fill="rgba(201,162,39,0.25)" transform="rotate(90)"/>
+          <ellipse cx="0" cy="-38" rx="10" ry="22" fill="rgba(201,162,39,0.25)" transform="rotate(135)"/>
+          <ellipse cx="0" cy="-38" rx="10" ry="22" fill="rgba(201,162,39,0.25)" transform="rotate(180)"/>
+          <ellipse cx="0" cy="-38" rx="10" ry="22" fill="rgba(201,162,39,0.25)" transform="rotate(225)"/>
+          <ellipse cx="0" cy="-38" rx="10" ry="22" fill="rgba(201,162,39,0.25)" transform="rotate(270)"/>
+          <ellipse cx="0" cy="-38" rx="10" ry="22" fill="rgba(201,162,39,0.25)" transform="rotate(315)"/>
+          <circle cx="0" cy="0" r="18" fill="rgba(201,162,39,0.15)" stroke="rgba(201,162,39,0.3)" stroke-width="1"/>
+        </g>
+      </svg>
+      <div class="lotus-center">ॐ</div>
+    </div>
+    <h2 class="closing-title reveal reveal-delay-1">
+      May Krishna's Wisdom Guide Your Path
+    </h2>
+    <div class="maha-mantra reveal reveal-delay-2">
+      हरे कृष्ण • हरे कृष्ण • कृष्ण कृष्ण • हरे हरे<br>
+      हरे राम • हरे राम • राम राम • हरे हरे
+    </div>
+  </div>
+</section>
+
+<!-- ===== PEACOCK FEATHER ===== -->
+<div class="peacock-feather-float" id="peacockFloat">
+  <svg class="feather-svg" viewBox="0 0 48 80" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="featherGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#4CAF50"/>
+        <stop offset="40%" stop-color="#2196F3"/>
+        <stop offset="100%" stop-color="#c9a227"/>
+      </linearGradient>
+    </defs>
+    <!-- Feather shaft -->
+    <line x1="24" y1="78" x2="24" y2="8" stroke="url(#featherGrad)" stroke-width="2" stroke-linecap="round"/>
+    <!-- Feather barbs left -->
+    <path d="M24 20 Q12 16 6 22" stroke="#4CAF50" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.8"/>
+    <path d="M24 28 Q10 22 4 30" stroke="#4CAF50" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.75"/>
+    <path d="M24 36 Q11 30 5 38" stroke="#42A5F5" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.75"/>
+    <path d="M24 44 Q12 38 7 46" stroke="#42A5F5" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+    <path d="M24 52 Q14 46 10 53" stroke="#c9a227" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+    <!-- Feather barbs right -->
+    <path d="M24 20 Q36 16 42 22" stroke="#4CAF50" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.8"/>
+    <path d="M24 28 Q38 22 44 30" stroke="#4CAF50" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.75"/>
+    <path d="M24 36 Q37 30 43 38" stroke="#42A5F5" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.75"/>
+    <path d="M24 44 Q36 38 41 46" stroke="#42A5F5" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+    <path d="M24 52 Q34 46 38 53" stroke="#c9a227" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+    <!-- Eye of feather -->
+    <ellipse cx="24" cy="12" rx="12" ry="14" fill="#1565C0" opacity="0.8"/>
+    <ellipse cx="24" cy="12" rx="8" ry="10" fill="#42A5F5" opacity="0.8"/>
+    <ellipse cx="24" cy="12" rx="4.5" ry="6" fill="#0D47A1"/>
+    <ellipse cx="24" cy="12" rx="2" ry="2.5" fill="#fff" opacity="0.5"/>
+  </svg>
+  <div class="feather-tooltip">
+    "The peacock feather reminds us of beauty, humility and divine grace."
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">🪷 Shree Krishna</div>
+      <div class="footer-tagline">Made with devotion ❤️ for Shri Krishna</div>
+    </div>
+    <nav class="footer-links">
+      <a href="#divine-presence">About Krishna</a>
+      <a href="#gita">Bhagavad Gita</a>
+      <a href="#teachings">Teachings</a>
+      <a href="#vrindavan">Vrindavan</a>
+      <a href="#festivals">Festivals</a>
+    </nav>
+  </div>
+  <div class="footer-bottom">
+    <span>ॐ नमो भगवते वासुदेवाय</span> — All glories to the lotus feet of Shri Krishna
+  </div>
+</footer>
+
+<script>
+// ===== LOADER =====
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('hidden');
+    initStars();
+    initParticles();
+    initVrindavan();
+    initRKFlowers();
+  }, 2600);
+});
+
+// ===== CURSOR =====
+const dot = document.getElementById('cursor-dot');
+const ring = document.getElementById('cursor-ring');
+let mx = 0, my = 0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+  ring.style.left = mx + 'px'; ring.style.top = my + 'px';
+});
+
+// ===== NAVBAR =====
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+});
+function toggleNav() {
+  document.querySelector('nav').classList.toggle('nav-mobile-open');
+}
+// Close menu on link click
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', () => document.querySelector('nav').classList.remove('nav-mobile-open'));
+});
+
+// ===== STAR GENERATION (Hero) =====
+function initStars() {
+  const layer = document.getElementById('starsLayer');
+  if (!layer) return;
+  for (let i = 0; i < 120; i++) {
+    const s = document.createElement('div');
+    const size = Math.random() * 2.5 + 0.5;
+    const x = Math.random() * 100;
+    const y = Math.random() * 60;
+    const dur = Math.random() * 4 + 2;
+    s.style.cssText = `position:absolute;width:${size}px;height:${size}px;
+      background:rgba(255,255,255,${Math.random()*0.6+0.2});border-radius:50%;
+      left:${x}%;top:${y}%;
+      animation:omPulse ${dur}s ease-in-out ${Math.random()*4}s infinite;`;
+    layer.appendChild(s);
+  }
+}
+
+// ===== PARTICLE CANVAS (Global background particles) =====
+function initParticles() {
+  const canvas = document.getElementById('particles-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W = canvas.width = window.innerWidth;
+  let H = canvas.height = window.innerHeight;
+  window.addEventListener('resize', () => {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  });
+  // Create particles: golden dust + flower petals
+  const particles = [];
+  for (let i = 0; i < 70; i++) {
+    particles.push({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      r: Math.random() * 2 + 0.5,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: Math.random() * -0.5 - 0.1,
+      alpha: Math.random() * 0.4 + 0.1,
+      type: Math.random() > 0.7 ? 'petal' : 'dust',
+      rot: Math.random() * Math.PI * 2,
+      rotSpeed: (Math.random() - 0.5) * 0.02,
+    });
+  }
+  // Firefly particles
+  const fireflies = [];
+  for (let i = 0; i < 25; i++) {
+    fireflies.push({
+      x: Math.random() * W,
+      y: Math.random() * H * 0.8 + H * 0.1,
+      vx: (Math.random() - 0.5) * 0.6,
+      vy: (Math.random() - 0.5) * 0.4,
+      r: Math.random() * 2.5 + 1,
+      alpha: Math.random(),
+      phase: Math.random() * Math.PI * 2,
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    const t = Date.now() * 0.001;
+
+    // Golden dust
+    particles.forEach(p => {
+      p.x += p.vx; p.y += p.vy; p.rot += p.rotSpeed;
+      if (p.y < -20) { p.y = H + 20; p.x = Math.random() * W; }
+      if (p.x < -20) p.x = W + 20;
+      if (p.x > W + 20) p.x = -20;
+
+      if (p.type === 'dust') {
+        ctx.save();
+        ctx.globalAlpha = p.alpha;
+        ctx.fillStyle = '#c9a227';
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      } else {
+        ctx.save();
+        ctx.globalAlpha = p.alpha * 0.6;
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
+        ctx.fillStyle = '#f5c2d5';
+        ctx.beginPath();
+        ctx.ellipse(0, 0, p.r * 4, p.r * 2, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+    });
+
+    // Fireflies
+    fireflies.forEach(f => {
+      f.x += f.vx; f.y += f.vy;
+      f.phase += 0.04;
+      if (f.x < 0) f.x = W; if (f.x > W) f.x = 0;
+      if (f.y < 0) f.y = H; if (f.y > H) f.y = 0;
+      const a = (Math.sin(f.phase) * 0.5 + 0.5) * 0.7 + 0.1;
+      ctx.save();
+      ctx.globalAlpha = a;
+      const grad = ctx.createRadialGradient(f.x, f.y, 0, f.x, f.y, f.r * 4);
+      grad.addColorStop(0, '#fef9c3');
+      grad.addColorStop(0.4, '#c9a227');
+      grad.addColorStop(1, 'transparent');
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(f.x, f.y, f.r * 4, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    });
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+
+// ===== HERO FLOATING PETALS =====
+function createHeroPetals() {
+  const container = document.getElementById('petals-container');
+  if (!container) return;
+  const petals = ['🌸', '🌺', '🌼', '🪷'];
+  for (let i = 0; i < 15; i++) {
+    const p = document.createElement('div');
+    p.style.cssText = `
+      position:absolute; z-index:3; pointer-events:none;
+      font-size:${Math.random()*12+10}px;
+      left:${Math.random()*100}%;
+      top:${Math.random()*60+10}%;
+      opacity:${Math.random()*0.5+0.2};
+      animation: flowerFloat ${Math.random()*6+6}s ease-in-out ${Math.random()*6}s infinite;
+    `;
+    p.textContent = petals[Math.floor(Math.random() * petals.length)];
+    container.appendChild(p);
+  }
+}
+createHeroPetals();
+
+// ===== SCROLL REVEAL =====
+const reveals = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+reveals.forEach(r => revealObserver.observe(r));
+
+// ===== BHAGAVAD GITA VERSES =====
+const verses = [
+  {
+    sk: 'कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।',
+    en: 'You have the right to perform your duty, but not to the fruits of your actions.'
+  },
+  {
+    sk: 'योगस्थः कुरु कर्माणि सङ्गं त्यक्त्वा धनंजय।',
+    en: 'Perform your duty established in yoga, abandoning all attachment to success or failure.'
+  },
+  {
+    sk: 'सर्वधर्मान्परित्यज्य मामेकं शरणं व्रज।',
+    en: 'Abandon all varieties of dharma and simply surrender unto me alone. I shall liberate you from all sinful reactions.'
+  },
+  {
+    sk: 'मन्मना भव मद्भक्तो मद्याजी मां नमस्कुरु।',
+    en: 'Always think of me, become my devotee, worship me and offer your homage unto me. Thus you will come to me without fail.'
+  },
+  {
+    sk: 'नायमात्मा बलहीनेन लभ्यो न च प्रमादात्।',
+    en: 'The self cannot be attained by the weak, nor through carelessness or negligence — only through earnest seeking.'
+  },
+  {
+    sk: 'श्रेयान्स्वधर्मो विगुणः परधर्मात्स्वनुष्ठितात्।',
+    en: 'Better is one\'s own duty, though imperfectly performed, than the duty of another well performed.'
+  },
+  {
+    sk: 'उद्धरेदात्मनात्मानं नात्मानमवसादयेत्।',
+    en: 'One must elevate, not degrade oneself by one\'s own mind. The mind is the friend of the conditioned soul, and its enemy as well.'
+  },
+  {
+    sk: 'समः शत्रौ च मित्रे च तथा मानापमानयोः।',
+    en: 'One who is equal to friends and enemies alike, and balanced in honor and dishonor, heat and cold — that person is very dear to me.'
+  }
+];
+let currentVerse = 0;
+
+function updateVerse(dir) {
+  const sk = document.getElementById('gitaSanskrit');
+  const en = document.getElementById('gitaTranslation');
+  const ct = document.getElementById('gitaCounter');
+  if (!sk) return;
+  sk.style.opacity = '0'; en.style.opacity = '0';
+  setTimeout(() => {
+    currentVerse = (currentVerse + dir + verses.length) % verses.length;
+    sk.textContent = verses[currentVerse].sk;
+    en.textContent = verses[currentVerse].en;
+    ct.textContent = `${currentVerse + 1} of ${verses.length}`;
+    sk.style.transition = 'opacity 0.5s'; en.style.transition = 'opacity 0.5s';
+    sk.style.opacity = '1'; en.style.opacity = '1';
+  }, 400);
+}
+function nextVerse() { updateVerse(1); }
+function prevVerse() { updateVerse(-1); }
+
+// Auto-cycle gita verses
+setInterval(() => nextVerse(), 8000);
+
+// ===== DIVINE FLUTE =====
+const fluteMessages = [
+  '🎵 In the stillness between notes, Krishna speaks to your soul...',
+  '🌿 The flute\'s song draws all hearts to the eternal home of Vrindavan...',
+  '✨ Every note is a prayer, every breath a surrender to the divine...',
+  '🪷 The melody of the flute dissolves the walls between you and the infinite...',
+  '💫 Hear the divine music — it has always been playing within your heart...',
+];
+let fluteIdx = 0;
+
+function playFlute(el) {
+  // Create floating notes
+  const notes = ['♩', '♪', '♫', '♬', '𝅘𝅥𝅮', '♭', '♯'];
+  const notesWrap = document.getElementById('fluteNotes');
+  for (let i = 0; i < 8; i++) {
+    const n = document.createElement('div');
+    n.className = 'note-particle';
+    n.textContent = notes[Math.floor(Math.random() * notes.length)];
+    n.style.left = (20 + Math.random() * 60) + '%';
+    n.style.top = (30 + Math.random() * 40) + '%';
+    n.style.animationDelay = (Math.random() * 0.5) + 's';
+    n.style.color = `hsl(${40 + Math.random()*20}, 80%, ${60 + Math.random()*20}%)`;
+    notesWrap.appendChild(n);
+    setTimeout(() => n.remove(), 2500);
+  }
+  // Ripple effect
+  el.style.transform = 'scale(1.05)';
+  setTimeout(() => el.style.transform = 'scale(1)', 300);
+  // Update message
+  const msg = document.getElementById('fluteMessage');
+  msg.style.opacity = '0';
+  setTimeout(() => {
+    fluteIdx = (fluteIdx + 1) % fluteMessages.length;
+    msg.textContent = fluteMessages[fluteIdx];
+    msg.style.opacity = '1';
+    msg.style.transition = 'opacity 0.5s';
+  }, 300);
+}
+
+// ===== VRINDAVAN SCENE =====
+function initVrindavan() {
+  // Mini stars in scene
+  const vrStars = document.getElementById('vrStars');
+  if (vrStars) {
+    for (let i = 0; i < 50; i++) {
+      const s = document.createElement('div');
+      s.style.cssText = `position:absolute;width:${Math.random()*2+0.5}px;height:${Math.random()*2+0.5}px;
+        background:rgba(255,255,255,${Math.random()*0.7+0.2});border-radius:50%;
+        left:${Math.random()*100}%;top:${Math.random()*55}%;
+        animation:omPulse ${Math.random()*3+2}s ease-in-out ${Math.random()*3}s infinite;`;
+      vrStars.appendChild(s);
+    }
+  }
+  // Fireflies in scene
+  const vrFF = document.getElementById('vrFireflies');
+  if (vrFF) {
+    for (let i = 0; i < 12; i++) {
+      const f = document.createElement('div');
+      f.style.cssText = `position:absolute;width:4px;height:4px;
+        background:rgba(255,245,150,0.9);border-radius:50%;
+        left:${Math.random()*80+10}%;top:${Math.random()*40+20}%;
+        box-shadow:0 0 6px rgba(255,245,150,0.8);
+        animation:omPulse ${Math.random()*2+1}s ease-in-out ${Math.random()*4}s infinite;`;
+      vrFF.appendChild(f);
+    }
+  }
+  // Parallax on mouse
+  const scene = document.getElementById('vrScene');
+  if (scene) {
+    scene.addEventListener('mousemove', e => {
+      const rect = scene.getBoundingClientRect();
+      const cx = (e.clientX - rect.left - rect.width / 2) / rect.width;
+      const cy = (e.clientY - rect.top - rect.height / 2) / rect.height;
+      scene.querySelectorAll('.vr-trees-l').forEach(t => {
+        t.style.transform = `translateX(${cx * -15}px)`;
+      });
+      scene.querySelectorAll('.vr-trees-r').forEach(t => {
+        t.style.transform = `scaleX(-1) translateX(${cx * 15}px)`;
+      });
+    });
+  }
+}
+
+// ===== RADHA KRISHNA FLOWERS =====
+function initRKFlowers() {
+  const cont = document.getElementById('rkFlowers');
+  if (!cont) return;
+  const emojis = ['🌸', '🌺', '🌼', '🪷', '✿', '❀'];
+  for (let i = 0; i < 20; i++) {
+    const f = document.createElement('div');
+    f.className = 'flower';
+    f.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    f.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;
+      animation-delay:${Math.random()*6}s;animation-duration:${Math.random()*4+4}s;
+      font-size:${Math.random()*14+8}px; opacity:${Math.random()*0.4+0.2};`;
+    cont.appendChild(f);
+  }
+}
+
+// ===== DIVINE PRESENCE MOUSE INTERACTION =====
+const auraWrap = document.getElementById('auraWrap');
+if (auraWrap) {
+  auraWrap.addEventListener('mousemove', e => {
+    const rect = auraWrap.getBoundingClientRect();
+    const cx = (e.clientX - rect.left - rect.width / 2) / rect.width;
+    const cy = (e.clientY - rect.top - rect.height / 2) / rect.height;
+    const aura = document.getElementById('presenceAura');
+    if (aura) {
+      aura.style.transform = `translate(${cx * 20}px, ${cy * 20}px) scale(1.1)`;
+      aura.style.background = `radial-gradient(circle at ${50 + cx*30}% ${50 + cy*30}%, rgba(201,162,39,0.25) 0%, transparent 70%)`;
+    }
+  });
+  auraWrap.addEventListener('mouseleave', () => {
+    const aura = document.getElementById('presenceAura');
+    if (aura) {
+      aura.style.transform = '';
+      aura.style.background = '';
+    }
+  });
+}
+</script>
+</body>
+</html>
